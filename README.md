@@ -2,7 +2,7 @@
 
 This repository contains a set of Android Studio projects that are refered from codelabs for Android TV apps: 
 
-- [Introduction to Compose for TV](https://developer.android.com/codelabs/introduction-to-compose-for-tv)
+- [Introduction to Compose for TV](https://developer.android.com/codelabs/compose-for-tv-introduction)
 
 ## Getting started
 
