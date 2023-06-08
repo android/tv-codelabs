@@ -16,9 +16,7 @@
 
 package com.example.tvcomposeintroduction.ui.screens
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,6 +34,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.TvLazyRow
 import androidx.tv.foundation.lazy.list.items
+import androidx.tv.material3.Card
+import androidx.tv.material3.CardScale
 import androidx.tv.material3.Carousel
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.MaterialTheme
@@ -45,7 +45,7 @@ import com.example.tvcomposeintroduction.R
 import com.example.tvcomposeintroduction.data.Movie
 import com.example.tvcomposeintroduction.ui.components.MovieCard
 
-@OptIn(ExperimentalTvMaterial3Api::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun CatalogBrowser(
     modifier: Modifier = Modifier,
@@ -68,31 +68,25 @@ fun CatalogBrowser(
                     .height(376.dp),
             ) { indexOfCarouselItem ->
                 val featuredMovie = featuredMovieList[indexOfCarouselItem]
-                CarouselItem(
-                    background = {
-                        AsyncImage(
-                            model = featuredMovie.backgroundImageUrl,
-                            contentDescription = null,
-                            placeholder = painterResource(
-                                id = R.drawable.placeholder
-                            ),
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize(),
-                        )
-                    },
-                    modifier = Modifier.clickable {
-                        onMovieSelected(featuredMovie)
-                    }
-                ) {
-                    Text(
-                        text = featuredMovie.title,
-                        style =
-                        MaterialTheme.typography.headlineLarge,
-                        modifier = Modifier
-                            .padding(36.dp)
-                            .background(MaterialTheme.colorScheme.background)
+                Card(onClick = { onMovieSelected(featuredMovie) }, scale = CardScale.None) {
+                    AsyncImage(
+                        model = featuredMovie.backgroundImageUrl,
+                        contentDescription = null,
+                        placeholder = painterResource(
+                            id = R.drawable.placeholder
+                        ),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
+                Text(
+                    text = featuredMovie.title,
+                    style =
+                    MaterialTheme.typography.headlineLarge,
+                    modifier = Modifier
+                        .padding(36.dp)
+                        .background(MaterialTheme.colorScheme.background)
+                )
             }
         }
         items(categoryList) { category ->
