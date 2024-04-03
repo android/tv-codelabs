@@ -17,26 +17,26 @@
 package com.example.tvcomposeintroduction.ui
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.tvcomposeintroduction.data.Movie
 import com.example.tvcomposeintroduction.ui.screens.catalog.CatalogBrowser
-import com.example.tvcomposeintroduction.ui.screens.details.DetailsError
 import com.example.tvcomposeintroduction.ui.screens.details.DetailsScreen
 
 @Composable
-fun App() {
-    val navController = rememberNavController()
-    val showDetails: (Movie) -> Unit = {
-        navController.navigate("/movie/${it.id}")
-    }
-
+fun App(
+    navController: NavHostController = rememberNavController()
+) {
     NavHost(navController = navController, startDestination = "/") {
         composable("/") {
-            CatalogBrowser(onMovieSelected = showDetails)
+            CatalogBrowser(
+                onMovieSelected = {
+                    navController.navigate("/movie/${it.id}")
+                }
+            )
         }
         composable(
             route = "/movie/{id}",
@@ -46,10 +46,12 @@ fun App() {
                 }
             )
         ) {
-            if (it.arguments?.getLong("id") == null) {
-                throw DetailsError.NoIdSpecified
-            }
-            DetailsScreen()
+            DetailsScreen(
+                backAction = {
+                    navController.popBackStack()
+                    navController.navigate("/")
+                }
+            )
         }
     }
 }

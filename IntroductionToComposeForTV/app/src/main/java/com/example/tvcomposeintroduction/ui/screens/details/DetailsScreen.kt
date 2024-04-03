@@ -16,14 +16,18 @@
 
 package com.example.tvcomposeintroduction.ui.screens.details
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.tv.material3.Button
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Text
@@ -33,19 +37,24 @@ import androidx.tv.material3.Text
  */
 @Composable
 fun DetailsScreen(
+    backAction: () -> Unit,
     modifier: Modifier = Modifier,
     detailsScreenViewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
-    val state by detailsScreenViewModel.detailsLoadingState.collectAsState()
+    val state by detailsScreenViewModel.detailsLoadingState.collectAsStateWithLifecycle()
+
     when (val s = state) {
         is DetailsLoadingState.Ready -> Details(
             movie = s.movie,
             modifier = modifier
         )
 
-        is DetailsLoadingState.NotFound ->
-            throw DetailsError.NoMovieFound(detailsScreenViewModel.movieId)
-        else -> Loading(modifier = modifier)
+        is DetailsLoadingState.NotFound -> NotFound(
+            backAction = backAction,
+            modifier = modifier.fillMaxSize()
+        )
+
+        else -> Loading(modifier = modifier.fillMaxSize())
     }
 }
 
@@ -55,7 +64,24 @@ fun DetailsScreen(
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 private fun Loading(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Loading...", style = MaterialTheme.typography.headlineMedium)
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        Text(text = "Loading...", style = MaterialTheme.typography.displayMedium)
     }
 }
+
+/**
+ *
+ */
+@OptIn(ExperimentalTvMaterial3Api::class)
+@Composable
+private fun NotFound(backAction: () -> Unit, modifier: Modifier = Modifier) {
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+            Text(text = "Not found", style = MaterialTheme.typography.displayMedium)
+            Button(onClick = backAction) {
+                Text(text = "Back to the previous screen")
+            }
+        }
+    }
+}
+
