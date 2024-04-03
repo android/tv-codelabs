@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.screens
+package com.example.tvcomposeintroduction.ui.screens.details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

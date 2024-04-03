@@ -23,9 +23,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.tvcomposeintroduction.data.Movie
-import com.example.tvcomposeintroduction.ui.screens.CatalogBrowser
-import com.example.tvcomposeintroduction.ui.screens.DetailsError
-import com.example.tvcomposeintroduction.ui.screens.DetailsScreen
+import com.example.tvcomposeintroduction.ui.screens.catalog.CatalogBrowser
+import com.example.tvcomposeintroduction.ui.screens.details.DetailsError
+import com.example.tvcomposeintroduction.ui.screens.details.DetailsScreen
 
 @Composable
 fun App() {

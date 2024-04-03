@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.screens
+package com.example.tvcomposeintroduction.ui.screens.catalog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

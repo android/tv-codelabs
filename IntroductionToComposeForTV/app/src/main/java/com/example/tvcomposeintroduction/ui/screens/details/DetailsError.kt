@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.screens
+package com.example.tvcomposeintroduction.ui.screens.details
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.tv.material3.ExperimentalTvMaterial3Api
-import com.example.tvcomposeintroduction.data.Movie
+sealed class DetailsError : Exception() {
+    data object NoIdSpecified : DetailsError() {
+        private fun readResolve(): Any = NoIdSpecified
+    }
 
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
-fun Details(movie: Movie, modifier: Modifier = Modifier) {
+    class NoMovieFound(private val id: Long) : DetailsError() {
+        override fun toString(): String = "No movie found at /movie/$id"
+    }
 }

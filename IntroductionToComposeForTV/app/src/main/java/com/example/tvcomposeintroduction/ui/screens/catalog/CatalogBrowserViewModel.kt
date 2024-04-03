@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.screens
+package com.example.tvcomposeintroduction.ui.screens.catalog
 
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel

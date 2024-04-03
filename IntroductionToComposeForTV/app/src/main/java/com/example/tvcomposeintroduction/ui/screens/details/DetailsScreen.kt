@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.screens
+package com.example.tvcomposeintroduction.ui.screens.details
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
