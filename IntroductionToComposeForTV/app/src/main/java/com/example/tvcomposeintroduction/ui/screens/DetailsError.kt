@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,9 +17,11 @@
 package com.example.tvcomposeintroduction.ui.screens
 
 sealed class DetailsError : Exception() {
-    object NoIdSpecified : DetailsError()
+    data object NoIdSpecified : DetailsError() {
+        private fun readResolve(): Any = NoIdSpecified
+    }
 
-    class NoMovieFound(val id: Long) : DetailsError() {
+    class NoMovieFound(private val id: Long) : DetailsError() {
         override fun toString(): String = "No movie found at /movie/$id"
     }
 }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,7 +23,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Text
 
@@ -33,7 +34,7 @@ import androidx.tv.material3.Text
 @Composable
 fun DetailsScreen(
     modifier: Modifier = Modifier,
-    detailsScreenViewModel: DetailsScreenViewModel = viewModel(factory = DetailsScreenViewModel.Factory),
+    detailsScreenViewModel: DetailsScreenViewModel = hiltViewModel()
 ) {
     val state by detailsScreenViewModel.detailsLoadingState.collectAsState()
     when (val s = state) {
@@ -41,7 +42,9 @@ fun DetailsScreen(
             movie = s.movie,
             modifier = modifier
         )
-        is DetailsLoadingState.NotFound -> throw DetailsError.NoMovieFound(detailsScreenViewModel.movieId)
+
+        is DetailsLoadingState.NotFound ->
+            throw DetailsError.NoMovieFound(detailsScreenViewModel.movieId)
         else -> Loading(modifier = modifier)
     }
 }
@@ -49,6 +52,7 @@ fun DetailsScreen(
 /**
  * Composable for DetailsLoadingState.Loading state.
  */
+@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 private fun Loading(modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
