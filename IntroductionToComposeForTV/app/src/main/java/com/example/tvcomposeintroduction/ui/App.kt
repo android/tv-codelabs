@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,40 +14,44 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction
+package com.example.tvcomposeintroduction.ui
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.tvcomposeintroduction.data.Movie
-import com.example.tvcomposeintroduction.ui.screens.CatalogBrowser
-import com.example.tvcomposeintroduction.ui.screens.DetailsError
-import com.example.tvcomposeintroduction.ui.screens.DetailsScreen
+import com.example.tvcomposeintroduction.ui.screens.catalog.CatalogBrowser
+import com.example.tvcomposeintroduction.ui.screens.details.DetailsScreen
 
 @Composable
-fun App() {
-    val navController = rememberNavController()
-    val showDetails: (Movie) -> Unit = {
-        navController.navigate("/movie/${it.id}")
-    }
-
+fun App(
+    navController: NavHostController = rememberNavController()
+) {
     NavHost(navController = navController, startDestination = "/") {
         composable("/") {
-            CatalogBrowser(onMovieSelected = showDetails)
+            CatalogBrowser(
+                onMovieSelected = {
+                    navController.navigate("/movie/${it.id}")
+                }
+            )
         }
         composable(
             route = "/movie/{id}",
-            arguments = listOf(navArgument("id") {
-                type = NavType.LongType
-            })
+            arguments = listOf(
+                navArgument("id") {
+                    type = NavType.LongType
+                }
+            )
         ) {
-            if(it.arguments?.getLong("id") == null){
-                throw DetailsError.NoIdSpecified
-            }
-            DetailsScreen()
+            DetailsScreen(
+                backAction = {
+                    navController.popBackStack()
+                    navController.navigate("/")
+                }
+            )
         }
     }
 }

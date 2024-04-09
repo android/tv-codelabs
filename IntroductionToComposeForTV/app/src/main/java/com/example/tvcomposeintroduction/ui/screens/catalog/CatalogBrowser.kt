@@ -14,25 +14,19 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.theme
+package com.example.tvcomposeintroduction.ui.screens.catalog
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.tv.material3.ExperimentalTvMaterial3Api
-import androidx.tv.material3.MaterialTheme
-import androidx.tv.material3.darkColorScheme
-import androidx.tv.material3.lightColorScheme
+import com.example.tvcomposeintroduction.data.Movie
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-fun TvComposeIntroductionTheme(
-    useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit,
+fun CatalogBrowser(
+    modifier: Modifier = Modifier,
+    catalogBrowserViewModel: CatalogBrowserViewModel = hiltViewModel(),
+    onMovieSelected: (Movie) -> Unit = {}
 ) {
-    val colorScheme = if (useDarkTheme) {
-        darkColorScheme()
-    } else {
-        lightColorScheme()
-    }
-    MaterialTheme(colorScheme = colorScheme, content = content)
 }

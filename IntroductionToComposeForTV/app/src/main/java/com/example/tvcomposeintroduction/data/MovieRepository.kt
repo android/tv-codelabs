@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,14 +17,14 @@
 package com.example.tvcomposeintroduction.data
 
 import com.example.tvcomposeintroduction.data.MovieAPI.loadCategoryList
+import java.lang.Integer.max
+import java.lang.Integer.min
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import java.lang.Integer.max
-import java.lang.Integer.min
 
 /**
  * MovieRepository class is a repository for Movies.
@@ -117,10 +117,12 @@ class MovieRepository(
     ) {
         val indexForCategory = max(categoryList.indexOf(category), 0)
         val neighbors =
-            (indexForCategory..min(
-                indexForCategory + neighborCount,
-                categoryList.size - 1
-            )).map { categoryList[it] }
+            (
+                indexForCategory..min(
+                    indexForCategory + neighborCount,
+                    categoryList.size - 1
+                )
+                ).map { categoryList[it] }
         CoroutineScope(dispatcher).launch {
             neighbors.forEach { loadMovieListByCategory(it) }
         }
