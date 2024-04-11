@@ -60,8 +60,7 @@ fun CatalogBrowser(
     TvLazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(32.dp),
-        contentPadding =
-        PaddingValues(horizontal = 58.dp, vertical = 36.dp)
+        contentPadding = PaddingValues(horizontal = 58.dp, vertical = 36.dp)
     ) {
         item {
             val featuredMovieList by catalogBrowserViewModel.featuredMovieList.collectAsState()
@@ -72,7 +71,7 @@ fun CatalogBrowser(
                     .height(376.dp),
             ) { indexOfCarouselItem ->
                 val featuredMovie = featuredMovieList[indexOfCarouselItem]
-                Card(onClick = { onMovieSelected(featuredMovie) }, scale = CardScale.None) {
+                Box(contentAlignment = Alignment.BottomStart) {
                     AsyncImage(
                         model = featuredMovie.backgroundImageUrl,
                         contentDescription = null,
@@ -82,15 +81,19 @@ fun CatalogBrowser(
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize(),
                     )
+                    Column(modifier = Modifier.padding(36.dp), ) {
+                        Text(
+                            text = featuredMovie.title,
+                            style =
+                            MaterialTheme.typography.headlineLarge,
+                            modifier = Modifier.background(MaterialTheme.colorScheme.background)
+                        )
+                        Spacer(modifier = Modifier.height(28.dp))
+                        Button(onClick = { onMovieSelected(featuredMovie) }) {
+                            Text(text = stringResource(id = R.string.show_details))
+                        }
+                    }
                 }
-                Text(
-                    text = featuredMovie.title,
-                    style =
-                    MaterialTheme.typography.headlineLarge,
-                    modifier = Modifier
-                        .padding(36.dp)
-                        .background(MaterialTheme.colorScheme.background)
-                )
             }
         }
         items(categoryList) { category ->
