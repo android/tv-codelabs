@@ -1,7 +1,7 @@
 [versions]
 activity-compose = "1.8.2"
-coil-compose = "2.5.0"
-compose-bom = "2024.03.00"
+coil-compose = "2.6.0"
+compose-bom = "2024.04.00"
 core-ktx = "1.12.0"
 hilt-android = "2.51"
 hilt-navigation-compose = "1.2.0"
@@ -10,7 +10,7 @@ lifecycle-viewmodel-compose = "2.7.0"
 navigation-compose = "2.7.7"
 tv-foundation = "1.0.0-alpha10"
 
-android-application = "8.3.1"
+android-application = "8.3.2"
 ksp = "1.9.0-1.0.13"
 
 [libraries]
