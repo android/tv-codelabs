@@ -81,7 +81,7 @@ fun CatalogBrowser(
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize(),
                     )
-                    Column(modifier = Modifier.padding(36.dp), ) {
+                    Column(modifier = Modifier.padding(36.dp),) {
                         Text(
                             text = featuredMovie.title,
                             style =
