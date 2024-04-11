@@ -16,4 +16,5 @@
 
 <resources>
     <string name="app_name">TvComposeIntroduction</string>
+    <string name="show_details">Show details</string>
 </resources>
