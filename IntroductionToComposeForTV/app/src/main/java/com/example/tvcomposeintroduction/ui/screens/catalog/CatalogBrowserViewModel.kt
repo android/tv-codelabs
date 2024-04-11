@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.screens
+package com.example.tvcomposeintroduction.ui.screens.catalog
 
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tvcomposeintroduction.data.Movie
 import com.example.tvcomposeintroduction.data.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
@@ -29,12 +31,13 @@ import kotlinx.coroutines.flow.stateIn
 /**
  * CatalogBrowserViewModel is a view model for CatalogBrowser screen.
  */
-class CatalogBrowserViewModel(
-    private val movieRepository: MovieRepository = MovieRepository(),
+@HiltViewModel
+class CatalogBrowserViewModel @Inject constructor(
+    private val movieRepository: MovieRepository
 ) : ViewModel() {
     val featuredMovieList: StateFlow<List<Movie>> = flow {
         emit(movieRepository.getFeaturedMovieList())
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), listOf())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), emptyList())
 
     val categoryList: StateFlow<List<Category>> = flow {
         var list = listOf<Category>()
@@ -46,7 +49,7 @@ class CatalogBrowserViewModel(
             list = list + listOf(category)
             emit(list)
         }
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), listOf())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), emptyList())
 }
 
 @Stable

@@ -32,7 +32,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.TvComposeIntroduction"
-        android:banner= "@mipmap/ic_launcher">
+        android:banner= "@mipmap/ic_launcher"
+        android:name=".TvComposeIntroductionApp">
         <activity
             android:name=".MainActivity"
             android:exported="true">
