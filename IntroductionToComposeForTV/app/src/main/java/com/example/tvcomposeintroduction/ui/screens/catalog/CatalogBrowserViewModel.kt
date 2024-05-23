@@ -16,9 +16,9 @@
 
 package com.example.tvcomposeintroduction.ui.screens.catalog
 
-import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tvcomposeintroduction.data.Category
 import com.example.tvcomposeintroduction.data.Movie
 import com.example.tvcomposeintroduction.data.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,6 +51,3 @@ class CatalogBrowserViewModel @Inject constructor(
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), emptyList())
 }
-
-@Stable
-data class Category(val name: String, val movieList: List<Movie>)
