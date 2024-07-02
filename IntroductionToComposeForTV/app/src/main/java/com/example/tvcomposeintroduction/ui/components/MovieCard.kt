@@ -32,7 +32,6 @@ import com.example.tvcomposeintroduction.data.Movie
 /**
  * MovieCard displays a Movie object as a card.
  */
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun MovieCard(
     movie: Movie,
