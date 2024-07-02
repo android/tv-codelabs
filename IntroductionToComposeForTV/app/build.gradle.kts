@@ -54,12 +54,13 @@ dependencies {
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(libs.androidx.core.ktx)
     implementation(composeBom)
+    // To use Compose Foundation 1.7.0
+    implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui.tooling)
     // Compose integration with activities
     implementation(libs.androidx.activity.compose)
 
     // TV Compose
-    implementation(libs.androidx.tv.foundation)
     implementation(libs.androidx.tv.material)
 
     // ViewModel utilities for Compose
