@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Android Open Source Project
+ * Copyright 2024 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.android.libray) apply false
-    alias(libs.plugins.kotlin) apply false
-    alias(libs.plugins.compose.compiler) apply false
-    alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.ksp) apply false
-}
+
+package com.example.tvcomposeintroduction.data
+
+data class Category(val name: String, val movieList: List<Movie>)
