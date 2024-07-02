@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Android Open Source Project
+ * Copyright 2024 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-package com.example.tvcomposeintroduction.ui.screens.details
+package com.example.tvcomposeintroduction.data
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import com.example.tvcomposeintroduction.data.Movie
-
-@Composable
-fun Details(movie: Movie, modifier: Modifier = Modifier) {
-}
+data class Category(val name: String, val movieList: List<Movie>)
