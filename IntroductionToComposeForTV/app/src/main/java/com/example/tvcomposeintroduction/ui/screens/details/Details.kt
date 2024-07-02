@@ -30,13 +30,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Text
 import coil.compose.AsyncImage
 import com.example.tvcomposeintroduction.data.Movie
 
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun Details(movie: Movie, modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize()) {
