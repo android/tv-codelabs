@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.tv.material3.Button
-import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Text
 
@@ -61,7 +60,6 @@ fun DetailsScreen(
 /**
  * Composable for DetailsLoadingState.Loading state.
  */
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 private fun Loading(modifier: Modifier = Modifier) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
@@ -70,9 +68,8 @@ private fun Loading(modifier: Modifier = Modifier) {
 }
 
 /**
- *
+ * Composable for DetailsLoadingState.NotFound
  */
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 private fun NotFound(backAction: () -> Unit, modifier: Modifier = Modifier) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
