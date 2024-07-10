@@ -17,12 +17,17 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
 
 kotlin {
     jvmToolchain(17)
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
 }
 
 android {
@@ -43,25 +48,19 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.0"
-    }
 }
 
 dependencies {
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(libs.androidx.core.ktx)
     implementation(composeBom)
+    // To use Compose Foundation 1.7.0
+    implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui.tooling)
     // Compose integration with activities
     implementation(libs.androidx.activity.compose)
 
     // TV Compose
-    implementation(libs.androidx.tv.foundation)
     implementation(libs.androidx.tv.material)
 
     // ViewModel utilities for Compose

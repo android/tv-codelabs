@@ -24,7 +24,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Card
-import androidx.tv.material3.ExperimentalTvMaterial3Api
 import coil.compose.AsyncImage
 import com.example.tvcomposeintroduction.R
 import com.example.tvcomposeintroduction.data.Movie
@@ -32,7 +31,6 @@ import com.example.tvcomposeintroduction.data.Movie
 /**
  * MovieCard displays a Movie object as a card.
  */
-@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun MovieCard(
     movie: Movie,
