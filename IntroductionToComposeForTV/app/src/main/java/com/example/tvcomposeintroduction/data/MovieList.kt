@@ -73,7 +73,7 @@ internal object MovieList {
             "Studio Four"
         )
 
-        val baseURL = "https://commondatastorage.googleapis.com/android-tv/Sample%20videos"
+        val baseURL = "https://storage.googleapis.com/androiddevelopers/samples_assets/android-tv/Sample%20videos"
 
         val videoUrl = arrayOf(
             "$baseURL/Zeitgeist/Zeitgeist%202010_%20Year%20in%20Review.mp4",
